@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cartinhas para minha princesinha 💗</title>
+  <style>
+    :root{
+      --bg1:#fff7fb;
+      --bg2:#fff1f8;
+      --card:#ffffffcc;
+      --stroke:#f6c6da;
+      --stroke2:#f9d7e6;
+      --text:#3a2a35;
+      --muted:#6c5a66;
+      --pink:#f3a8c7;
+      --pink2:#ffd4e6;
+      --shadow: 0 12px 30px rgba(58,42,53,.08);
+      --radius: 22px;
+      --radius2: 18px;
+      --ring: 0 0 0 4px rgba(243,168,199,.25);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 700px at 15% 10%, #ffe6f2 0%, transparent 55%),
+        radial-gradient(800px 600px at 85% 25%, #ffeef6 0%, transparent 50%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 18px 64px;
+    }
+
+    header{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      align-items:flex-start;
+      margin-bottom: 18px;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border:1px solid var(--stroke2);
+      background: rgba(255,255,255,.65);
+      border-radius: 999px;
+      box-shadow: 0 8px 22px rgba(58,42,53,.06);
+      backdrop-filter: blur(8px);
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, #fff, var(--pink));
+      box-shadow: 0 0 0 4px rgba(243,168,199,.18);
+    }
+    h1{
+      margin:0;
+      font-size: clamp(22px, 3.2vw, 34px);
+      letter-spacing:-.02em;
+    }
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      line-height:1.5;
+      max-width: 62ch;
+    }
+
+    .controls{
+      width:100%;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 6px;
+      align-items:center;
+    }
+
+    .input{
+      flex: 1 1 280px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke2);
+      background: rgba(255,255,255,.78);
+      box-shadow: 0 10px 24px rgba(58,42,53,.06);
+      backdrop-filter: blur(8px);
+      transition: box-shadow .2s ease, border-color .2s ease;
+    }
+    .input:focus-within{
+      box-shadow: var(--shadow), var(--ring);
+      border-color: var(--pink);
+    }
+    .input input{
+      border:none;
+      outline:none;
+      width:100%;
+      font-size: 14px;
+      background: transparent;
+      color:var(--text);
+    }
+    .input .icon{opacity:.7}
+
+    .btn{
+      border:none;
+      cursor:pointer;
+      padding: 12px 14px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #ffe2ef, #ffd2e6);
+      border: 1px solid var(--stroke);
+      color: var(--text);
+      font-weight: 600;
+      box-shadow: 0 10px 24px rgba(58,42,53,.07);
+      transition: transform .12s ease, box-shadow .2s ease, filter .2s ease;
+      user-select:none;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+    }
+    .btn:hover{filter: brightness(1.02)}
+    .btn:active{transform: translateY(1px); box-shadow: 0 8px 16px rgba(58,42,53,.06);}
+
+    .chip{
+      border:none;
+      cursor:pointer;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.74);
+      border: 1px solid var(--stroke2);
+      color: var(--muted);
+      box-shadow: 0 10px 24px rgba(58,42,53,.05);
+      transition: box-shadow .2s ease, color .2s ease, border-color .2s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-weight:600;
+    }
+    .chip[data-active="true"]{
+      border-color: var(--pink);
+      color: var(--text);
+      box-shadow: var(--shadow), var(--ring);
+    }
+
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+    .card{
+      grid-column: span 6;
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--stroke2);
+      background: rgba(255,255,255,.72);
+      box-shadow: 0 14px 30px rgba(58,42,53,.06);
+      backdrop-filter: blur(10px);
+      position:relative;
+      overflow:hidden;
+      cursor:pointer;
+      transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease;
+      min-height: 112px;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: var(--pink);
+      box-shadow: var(--shadow);
+    }
+    .card:active{transform: translateY(-1px)}
+    .card h3{
+      margin: 2px 0 6px;
+      font-size: 16px;
+      letter-spacing:-.01em;
+    }
+    .meta{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .envelope{
+      position:absolute;
+      right:-30px;
+      top:-30px;
+      width:120px;height:120px;
+      border-radius: 30px;
+      transform: rotate(12deg);
+      background: radial-gradient(circle at 30% 30%, #fff, #ffe3ef);
+      border: 1px solid rgba(246,198,218,.7);
+      box-shadow: 0 10px 22px rgba(58,42,53,.05);
+    }
+    .envelope::after{
+      content:"";
+      position:absolute;
+      inset: 18px;
+      border-radius: 22px;
+      border: 1px dashed rgba(243,168,199,.7);
+      opacity:.9;
+    }
+
+    .fav{
+      width:36px;height:36px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke2);
+      background: rgba(255,255,255,.78);
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      transition: transform .12s ease, box-shadow .2s ease, border-color .2s ease;
+      flex: 0 0 auto;
+    }
+    .fav:hover{box-shadow: 0 10px 18px rgba(58,42,53,.06); border-color: var(--pink);}
+    .fav:active{transform: translateY(1px)}
+    .fav[data-on="true"]{
+      border-color: var(--pink);
+      box-shadow: var(--ring);
+    }
+
+    /* Modal */
+    .overlay{
+      position:fixed;
+      inset:0;
+      background: rgba(30, 15, 25, .18);
+      backdrop-filter: blur(6px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+      z-index: 50;
+    }
+    .overlay.show{display:flex}
+    .modal{
+      width:min(720px, 100%);
+      background: rgba(255,255,255,.86);
+      border: 1px solid var(--stroke2);
+      border-radius: 28px;
+      box-shadow: 0 18px 50px rgba(58,42,53,.14);
+      overflow:hidden;
+      transform: translateY(6px);
+      animation: pop .18s ease forwards;
+      position:relative;
+    }
+    @keyframes pop{
+      to{transform: translateY(0)}
+    }
+    .paper{
+      padding: 22px 20px 18px;
+      background:
+        radial-gradient(900px 600px at 30% 10%, rgba(255, 230, 242,.65), transparent 55%),
+        radial-gradient(900px 600px at 80% 30%, rgba(255, 241, 248,.75), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.78));
+    }
+    .modal h2{
+      margin:0 0 8px;
+      font-size: 18px;
+      letter-spacing:-.01em;
+    }
+    .modal p{
+      margin:0;
+      white-space: pre-wrap;
+      line-height: 1.65;
+      color: var(--text);
+      font-size: 15px;
+    }
+    .modal .footer{
+      display:flex;
+      gap:10px;
+      justify-content:space-between;
+      align-items:center;
+      padding: 14px 16px;
+      border-top: 1px solid var(--stroke2);
+      background: rgba(255,255,255,.7);
+    }
+    .mini{
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .close{
+      border:none;
+      cursor:pointer;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.75);
+      border: 1px solid var(--stroke2);
+      color: var(--text);
+      font-weight: 700;
+      transition: box-shadow .2s ease, border-color .2s ease, transform .12s ease;
+    }
+    .close:hover{border-color: var(--pink); box-shadow: 0 10px 18px rgba(58,42,53,.06);}
+    .close:active{transform: translateY(1px)}
+    .empty{
+      margin-top: 18px;
+      padding: 22px;
+      border-radius: var(--radius);
+      border: 1px dashed rgba(243,168,199,.8);
+      background: rgba(255,255,255,.55);
+      color: var(--muted);
+      text-align:center;
+    }
+
+    @media (max-width: 760px){
+      .card{grid-column: span 12;}
+      .badge{align-self:stretch; justify-content:space-between}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="badge">
+        <span class="dot"></span>
+        <span>Cartinhas do Leon para você, meu amor 💗</span>
+      </div>
+
+      <h1>Para a minha princesinha 💍</h1>
+      <p class="subtitle">
+        Quando você quiser, abre uma cartinha, fiz uma pra cada ocasião
+      </p>
+
+      <div class="controls">
+        <div class="input" title="Buscar cartinhas">
+          <span class="icon">🔎</span>
+          <input id="search" type="text" placeholder="Buscar por título ou palavra…" autocomplete="off" />
+        </div>
+
+        <button id="randomBtn" class="btn" type="button">
+          🎀 Cartinha aleatória
+        </button>
+
+        <button id="favFilter" class="chip" type="button" data-active="false">
+          ⭐ Favoritas
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section id="grid" class="grid" aria-label="Lista de cartinhas"></section>
+      <div id="empty" class="empty" style="display:none;">
+        Não achei nenhuma cartinha com isso… tenta outra palavra 💗
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div id="overlay" class="overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document" aria-label="Cartinha aberta">
+      <div class="paper">
+        <h2 id="modalTitle"></h2>
+        <p id="modalBody"></p>
+      </div>
+      <div class="footer">
+        <div class="mini" id="modalMini"></div>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button id="modalFav" class="chip" type="button" data-active="false">⭐ Favoritar</button>
+          <button id="closeBtn" class="close" type="button">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+const letters = [
+  {
+    title: "Quando você achar que não consegue",
+    body:
+`Meu amor, eu sei que às vezes tudo pesa ao mesmo tempo, eu sei que tem dias em que você olha pra frente e não enxerga força nenhuma dentro de você, mas é justamente nesses dias que eu tenho mais orgulho de quem você é, porque mesmo cansada, mesmo com medo, mesmo duvidando de si, você continua
+
+E se um dia você realmente sentir que não consegue, então deixa que eu acredito por nós dois, deixa que eu seguro o peso por um tempo, deixa que eu te mostro, com calma, com paciência, com amor, que você é muito mais forte do que pensa
+
+Eu te amo até nos dias em que você acha que não merece amor nenhum`
+  },
+  {
+    title: "Quando você estiver cansada",
+    body:
+`Descansa, meu amor, não tenta ser forte o tempo todo, não tenta dar conta de tudo sozinha, porque você não precisa provar nada pra ninguém, muito menos pra mim
+
+Se o mundo ficar pesado demais, eu sempre vou estar com você, mesmo que seja só em pensamento, porque eu quero ser o lugar onde você abaixa a guarda, onde você respira fundo, onde você pode simplesmente existir sem medo, sem cobrança, sem pressão
+
+O meu amor por você também serve pra te dar descanso`
+  },
+  {
+    title: "Quando você estiver ansiosa",
+    body:
+`Respira devagar amor, o mundo não vai acabar se você não resolver tudo agora, a vida não precisa ser perfeita, você não precisa carregar tudo de uma vez
+
+Se a ansiedade apertar o seu peito, pensa que eu to te abraçando bem forte, dizendo que ta tudo bem, que você não precisa lutar sozinha nunca mais
+
+Eu tô aqui, e enquanto eu existir, você sempre vai ter um lugar seguro`
+  },
+  {
+    title: "Quando você duvidar de você",
+    body:
+`Eu queria nem que fosse por um minuto, que você pudesse se enxergar pelos meus olhos, porque talvez assim você entenderia o tamanho da mulher incrível que você é
+
+Você é forte, você é sensível, você é doce, você é corajosa até quando treme por dentro, e nenhuma insegurança do mundo consegue apagar o brilho que você carrega
+
+Se você esquecer quem você é, eu vou te lembrar, quantas vezes for preciso, porque amar você também é proteger você de tudo que tenta diminuir o seu valor`
+  },
+  {
+    title: "Quando você sentir saudade",
+    body:
+`A saudade só existe porque o amor é grande demais pra caber em distância, tempo ou silêncio
+
+Quando ela apertar, lembra que você mora em mim, nos meus pensamentos, nas minhas orações, nos meus planos e sonhos, e em tudo que eu imagino pro nosso futuro
+
+Eu sinto saudade de você até quando a gente acabou de se despedir, você sempre faz falta`
+  },
+  {
+    title: "Quando o mundo parecer pesado demais",
+    body:
+`Se tudo ficar difícil, se o mundo parecer grande demais e você pequena demais dentro dele, não tenta enfrentar tudo sozinha
+
+Eu to aqui pra você, me deixa dividir o peso, me deixa ser o seu abrigo, o seu refúgio, o seu descanso
+
+Eu não preciso ser a solução de todos os seus problemas, eu só quero ser o lugar onde você se sente segura enquanto enfrenta eles`
+  },
+  {
+    title: "Quando você tiver medo do futuro",
+    body:
+`O futuro pode ser incerto, pode dar medo, pode parecer um lugar cheio de dúvidas, mas tem uma coisa que pra mim é muito clara, eu quero você nele
+
+Não importa onde a gente esteja, o que a gente esteja enfrentando, desde que seja juntos, eu sei que vai valer a pena, porque a sua presença transforma qualquer caminho em algo mais bonito
+
+Com você, até o desconhecido parece menos assustador`
+  },
+  {
+    title: "Quando você estiver feliz",
+    body:
+`A sua felicidade é uma das coisas mais lindas que eu já vi
+
+Eu amo quando o seu olhar fica leve, quando o teu sorriso aparece sem esforço, quando você se sente bem consigo mesma
+
+Se depender de mim, eu vou fazer de tudo pra ver esse sorriso se repetir mil vezes, porque ver você feliz me faz o homem mais feliz do mundo`
+  },
+  {
+    title: "Quando você achar que falhou",
+    body:
+`Um erro não apaga quem você é, um tropeço não destrói a sua história, e um dia ruim não define o seu valor
+
+Eu não te amo pelos seus acertos, nem pelas suas vitórias, eu te amo por inteiro, até nos dias em que você acha que não merece amor nenhum
+
+E nesses dias eu vou continuar aqui, te amando do mesmo jeito`
+  },
+  {
+    title: "Quando você não quiser conversar",
+    body:
+`Tudo bem ficar em silêncio, tudo bem não conseguir explicar o que você sente, tudo bem só querer um pouco de espaço
+
+Você não precisa transformar cada dor em palavra, não precisa se justificar, não precisa ter resposta pra tudo
+
+Eu continuo aqui, do mesmo jeito, com o mesmo carinho, com o mesmo amor, esperando o momento em que você se sentir pronta pra voltar`
+  },
+  {
+    title: "Quando você se sentir sozinha",
+    body:
+`Mesmo quando o quarto estiver silencioso, mesmo quando o dia parecer pesado, mesmo quando ninguém parecer entender você, lembra de uma coisa, você nunca esteve realmente sozinha
+
+Porque existe alguém aqui que pensa em você, que se preocupa com você, que ora por você, e que ama você completamente, um amor puro
+
+E esse alguém sou eu`
+  },
+  {
+    title: "Quando você precisar de coragem",
+    body:
+`Se o medo bater, pega um pouco da minha coragem emprestada
+
+Eu dou ela toda pra você, sem pensar duas vezes, porque ver você desistindo de algo por medo seria muito mais doloroso do que qualquer risco
+
+Vai, tenta, enfrenta, e se você cair, eu vou estar aqui, com a mão estendida, pronto pra te levantar de novo`
+  },
+  {
+    title: "Quando você pensar em desistir",
+    body:
+`Antes de desistir, lembra de tudo que você já superou, de todas as vezes que você achou que não ia aguentar e mesmo assim continuou
+
+Você tem uma força silenciosa dentro de você, a mulher mais forte que eu conheço, não desista meu amor, eu estou com você
+
+E se um dia você esquecer disso, eu vou te lembrar quantas vezes forem necessárias`
+  },
+  {
+    title: "Quando você quiser se sentir cuidada",
+    body:
+`Fecha os olhos e imagina o meu abraço, firme, quente, que te traz paz
+
+Eu queria poder cuidar de você em cada detalhe, em cada momento, porque amar você também é querer proteger você de tudo que te machuca
+
+Mesmo quando eu não posso estar perto, o meu amor por você continua tentando te alcançar`
+  },
+  {
+    title: "Só porque eu te amo",
+    body:
+`Eu te amo incondicionalmente
+
+Eu te amo nos dias bons, nos dias ruins, nos dias silenciosos, nos dias confusos, e até nos dias em que você acha que não merece ser amada
+
+E se um dia você esquecer disso, volta aqui, abre essa cartinha, e lembra que existe alguém no mundo que ama você por completo, um amor verdadeiro e que não tem medo de se entregar`
+  }
+];
+
+
+    // ====== App ======
+    const grid = document.getElementById("grid");
+    const empty = document.getElementById("empty");
+    const search = document.getElementById("search");
+    const randomBtn = document.getElementById("randomBtn");
+    const favFilter = document.getElementById("favFilter");
+
+    const overlay = document.getElementById("overlay");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalBody = document.getElementById("modalBody");
+    const modalMini = document.getElementById("modalMini");
+    const closeBtn = document.getElementById("closeBtn");
+    const modalFav = document.getElementById("modalFav");
+
+    const FAV_KEY = "aurora_cartinhas_favs_v1";
+    let favs = new Set(JSON.parse(localStorage.getItem(FAV_KEY) || "[]"));
+
+    let showFavOnly = false;
+    let openIndex = null;
+
+    function saveFavs(){
+      localStorage.setItem(FAV_KEY, JSON.stringify([...favs]));
+    }
+
+    function isFav(i){ return favs.has(i); }
+
+    function normalize(str){
+      return (str || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
+    function filteredLetters(){
+      const q = normalize(search.value.trim());
+      return letters
+        .map((l, i) => ({...l, i}))
+        .filter(item => {
+          if (showFavOnly && !isFav(item.i)) return false;
+          if (!q) return true;
+          const hay = normalize(item.title + " " + item.body);
+          return hay.includes(q);
+        });
+    }
+
+    function render(){
+      const items = filteredLetters();
+      grid.innerHTML = "";
+
+      empty.style.display = items.length ? "none" : "block";
+
+      for (const item of items){
+        const card = document.createElement("article");
+        card.className = "card";
+        card.setAttribute("tabindex", "0");
+        card.setAttribute("role", "button");
+        card.setAttribute("aria-label", "Abrir cartinha: " + item.title);
+
+        const env = document.createElement("div");
+        env.className = "envelope";
+
+        const h3 = document.createElement("h3");
+        h3.textContent = item.title;
+
+        const meta = document.createElement("div");
+        meta.className = "meta";
+
+        const left = document.createElement("span");
+        left.textContent = isFav(item.i) ? "⭐ Favorita" : "💌 Cartinha";
+
+        const favBtn = document.createElement("button");
+        favBtn.className = "fav";
+        favBtn.type = "button";
+        favBtn.setAttribute("aria-label", isFav(item.i) ? "Remover dos favoritos" : "Adicionar aos favoritos");
+        favBtn.dataset.on = isFav(item.i) ? "true" : "false";
+        favBtn.textContent = isFav(item.i) ? "⭐" : "☆";
+
+        favBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          toggleFav(item.i);
+        });
+
+        meta.appendChild(left);
+        meta.appendChild(favBtn);
+
+        card.appendChild(env);
+        card.appendChild(h3);
+        card.appendChild(meta);
+
+        card.addEventListener("click", () => openLetter(item.i));
+        card.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") openLetter(item.i);
+        });
+
+        grid.appendChild(card);
+      }
+    }
+
+    function toggleFav(i){
+      if (favs.has(i)) favs.delete(i);
+      else favs.add(i);
+      saveFavs();
+
+      // se estiver no modal aberto, reflete o estado
+      if (openIndex === i){
+        modalFav.dataset.active = favs.has(i) ? "true" : "false";
+        modalFav.textContent = favs.has(i) ? "⭐ Favorita" : "⭐ Favoritar";
+      }
+
+      render();
+    }
+
+    function openLetter(i){
+      openIndex = i;
+      const l = letters[i];
+      modalTitle.textContent = l.title;
+      modalBody.textContent = l.body;
+
+      modalMini.textContent = "Com amor, Leon 💗";
+      overlay.classList.add("show");
+      overlay.setAttribute("aria-hidden", "false");
+
+      modalFav.dataset.active = favs.has(i) ? "true" : "false";
+      modalFav.textContent = favs.has(i) ? "⭐ Favorita" : "⭐ Favoritar";
+
+      // trava scroll do fundo
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal(){
+      overlay.classList.remove("show");
+      overlay.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      openIndex = null;
+    }
+
+    // Events
+    search.addEventListener("input", render);
+
+    randomBtn.addEventListener("click", () => {
+      const items = filteredLetters();
+      if (!items.length) return;
+      const pick = items[Math.floor(Math.random() * items.length)];
+      openLetter(pick.i);
+    });
+
+    favFilter.addEventListener("click", () => {
+      showFavOnly = !showFavOnly;
+      favFilter.dataset.active = showFavOnly ? "true" : "false";
+      render();
+    });
+
+    closeBtn.addEventListener("click", closeModal);
+
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) closeModal();
+    });
+
+    modalFav.addEventListener("click", () => {
+      if (openIndex === null) return;
+      toggleFav(openIndex);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && overlay.classList.contains("show")) closeModal();
+    });
+
+    // init
+    render();
+  </script>
+</body>
+</html>
